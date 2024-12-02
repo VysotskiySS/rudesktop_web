@@ -16,8 +16,6 @@ from selenium.webdriver.common.keys import Keys
 
 
 class BasePage:
-    def __init__(self, url: str):
-        self.url = url
 
     @allure.step("Переход на страницу '{url}'")
     def open_url(self, url):
@@ -29,9 +27,23 @@ class BasePage:
     def elements(self, locator):
         return browser.all(locator)
 
+    def get_element_text(self, element, allureText=None):
+        if allureText is not None:
+            with allure.step(f"Получение текста из элемента '{allureText}'"):
+                return element.get(query.text)
+        else:
+            return element.get(query.text)
+
     @allure.step("Взять тело из элемента '{allureText}'")
     def get_element_value(self, element, allureText):
         return element.get(query.tag)
+
+    def set_text(self, element, text, fieldName=None):
+        if text is not None:
+            with allure.step(f"Заполнение поля '{fieldName}' текстом '{text}'"):
+                element.set_value(text)
+        else:
+            element.set_value(text)
 
     def set_text(self, element, text, fieldName=None):
         if text is not None:

@@ -18,11 +18,7 @@ def setup_browser(base_url):
     options.add_argument("--lang=en-US")
     browser.config.timeout = 10
     browser.config.driver_options = options
-    # driver.maximize_window()
-    # config.timeout = 10
-    # driver.implicitly_wait(10)
     browser.open(base_url)
-    # BasePage().open_url(base_url)
     # return driver
 
 def open_unsafe():
