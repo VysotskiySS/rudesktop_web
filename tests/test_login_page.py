@@ -1,7 +1,7 @@
+# file /rudesktop_web/tests/test_login_page.py
+
 import allure
 import pytest
-
-from config import *
 from pages.login_page import LoginPage
 
 @pytest.mark.usefixtures("setup")
@@ -26,9 +26,6 @@ class TestLoginPage:
         page = LoginPage()
         page.reset_pass()
 
-    #Logout
-
-    #ReLogin
 
 
 

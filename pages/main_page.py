@@ -1,3 +1,5 @@
+# file /rudesktop_web/pages/main_page.py
+
 from pages.base_page import BasePage
 from selene.api import be, have, s
 from config import *
