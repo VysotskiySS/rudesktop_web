@@ -1,3 +1,5 @@
+# file /rudesktop_web/tests/test_login_page.py
+
 import allure
 import pytest
 from pages.login_page import LoginPage
@@ -24,9 +26,6 @@ class TestLoginPage:
         page = LoginPage()
         page.reset_pass()
 
-    #Logout
-
-    #ReLogin
 
 
 
