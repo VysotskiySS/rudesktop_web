@@ -177,6 +177,13 @@ class BasePage:
             attachment_type=allure.attachment_type.PNG,
         )
 
+    # @staticmethod
+    # def get_screenshot():
+    #     # screen = "screen.png"
+    #     # browser.driver.get_screenshot_as_png(screen)
+    #     # allure.attach.file(f'./{screen}', attachment_type=allure.attachment_type.PNG)
+    #     pass
+
     @staticmethod
     def get_title():
         return browser.driver.title
