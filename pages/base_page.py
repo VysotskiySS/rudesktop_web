@@ -1,3 +1,5 @@
+# file /rudesktop_web/pages/base_page.py
+
 import ast
 import os
 import random
@@ -27,27 +29,27 @@ class BasePage:
     def elements(self, locator):
         return browser.all(locator)
 
-    def get_element_text(self, element, allureText=None):
-        if allureText is not None:
-            with allure.step(f"Получение текста из элемента '{allureText}'"):
+    def get_element_text(self, element, element_name=None):
+        if element_name is not None:
+            with allure.step(f"Получение текста из элемента '{element_name}'"):
                 return element.get(query.text)
         else:
             return element.get(query.text)
 
-    @allure.step("Взять тело из элемента '{allureText}'")
-    def get_element_value(self, element, allureText):
+    @allure.step("Взять тело из элемента '{element_name}'")
+    def get_element_value(self, element, element_name):
         return element.get(query.tag)
 
-    def set_text(self, element, text, fieldName=None):
+    def set_text(self, element, text, element_name=None):
         if text is not None:
-            with allure.step(f"Заполнение поля '{fieldName}' текстом '{text}'"):
+            with allure.step(f"Заполнение поля '{element_name}' текстом '{text}'"):
                 element.set_value(text)
         else:
             element.set_value(text)
 
-    def set_text(self, element, text, fieldName=None):
+    def set_text(self, element, text, element_name=None):
         if text is not None:
-            with allure.step(f"Заполнение поля '{fieldName}' текстом '{text}'"):
+            with allure.step(f"Заполнение поля '{element_name}' текстом '{text}'"):
                 element.set_value(text)
         else:
             element.set_value(text)
@@ -110,39 +112,39 @@ class BasePage:
             element.should(be.hidden)
 
     @allure.step("Сравнение значений {expression1} и {expression2}")
-    def assert_check_expressions(self, expression1, expression2, allureText=None):
-        assert expression1 == expression2, print(allureText)
+    def assert_check_expressions(self, expression1, expression2, element_name=None):
+        assert expression1 == expression2, print(element_name)
         self.get_screenshot()
 
     @allure.step("Проверка не соответсвия значений {expression1} и {expression2}")
-    def assert_check_not_expressions(self, expression1, expression2, allureText=None):
-        assert expression1 != expression2, print(allureText)
+    def assert_check_not_expressions(self, expression1, expression2, element_name=None):
+        assert expression1 != expression2, print(element_name)
 
     @allure.step("Проверка наличия текста {expression1} в {expression2}")
-    def assert_check_coincidence(self, expression1, expression2, allureText):
-        assert expression1 in expression2, print(allureText)
+    def assert_check_coincidence(self, expression1, expression2, element_name):
+        assert expression1 in expression2, print(element_name)
         self.get_screenshot()
 
     @allure.step("Проверка числового значения в пределах {value_from} в {value_to}")
-    def assert_check_range(self, value_from, value_to, value_check, allureText):
-        assert value_from <= value_check <= value_to, print(allureText)
+    def assert_check_range(self, value_from, value_to, value_check, element_name):
+        assert value_from <= value_check <= value_to, print(element_name)
 
     @allure.step("Сравнение значений {expression1} больше {expression2}")
-    def assert_check_comparison(self, expression1, expression2, allureText):
-        assert expression1 > expression2, print(allureText)
+    def assert_check_comparison(self, expression1, expression2, element_name):
+        assert expression1 > expression2, print(element_name)
 
     @allure.step("Клик Enter в поле '{fieldName}'")
-    def push_enter(self, element, fieldName):
+    def push_enter(self, element, element_name):
         element.send_keys(Keys.ENTER)
 
     @allure.step("Клик Backspace в поле '{fieldName}'")
-    def push_backspace(self, element, fieldName):
+    def push_backspace(self, element, element_name):
         element.send_keys(Keys.BACKSPACE)
 
     # @allure.step("Очистить поле '{fieldName}'")
-    def field_clear(self, element, fieldName=None):
-        if fieldName is not None:
-            with allure.step(f"Очистка поля '{fieldName}'"):
+    def field_clear(self, element, element_name=None):
+        if element_name is not None:
+            with allure.step(f"Очистка поля '{element_name}'"):
                 element.clear()
         else:
             element.clear()
