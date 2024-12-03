@@ -38,8 +38,8 @@ class LoginPage(BasePage):
 
     def logout(self):
         self.wait_element(self.LOGIN_ICON)
-        self.click(self.LOGIN_ICON)
-        self.click(self.LOGOUT_BTN)
+        self.click(self.LOGIN_ICON, 'иконка пользователя в верхнем правом углу')
+        self.click(self.LOGOUT_BTN, 'кнопка [Выйти]')
         self.wait_element(self.LOGO)
         current_text = self.get_element_text(self.LOGIN_MSG)
         assert current_text == 'Платформа удаленного администрирования'
