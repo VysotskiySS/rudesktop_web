@@ -20,7 +20,7 @@ class TestLoginPage:
     @pytest.mark.login
     @pytest.mark.smoke
     @pytest.mark.regress
-    @allure.title('Авторизоваться под локальной учетной записью')
+    @allure.title('Выход из учетной записи')
     @allure.testcase("https://dev.corp.rudesktop.ru/-/testy/projects/2/suites/8?test_case=213")
     def test_logout(self):
         page = LoginPage()
