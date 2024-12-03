@@ -36,7 +36,7 @@ class BasePage:
         else:
             return element.get(query.text)
 
-    @allure.step("Проверка значения атрибута placeholder элемента {element}")
+    @allure.step("Проверка значения атрибута placeholder элемента")
     def assert_placeholder(self, element, text):
         element = element()
         placeholder_value = element.get_attribute("placeholder")

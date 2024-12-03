@@ -18,8 +18,8 @@ class LoginPage(BasePage):
     LOGO = s('img[alt="RuDesktop"]')
     EMAIL_FIELD = s('input[placeholder="Адрес электронной почты"]')
     MSG_RECOVERY = s('//div[@class="card-body"]')
-    # 'input[placeholder="Логин"]'
-    # 'input[placeholder="Логин"]'
+    LOGOUT_BTN = s('//a[@href="/logout/"]')
+    LOGIN_AGAIN_BTN = s('//a[@class="btn btn-primary btn-block"]')
 
     @allure.step("Авторизоваться")
     def login(self, login=valid_login_superuser, password=valid_pass):
@@ -36,12 +36,23 @@ class LoginPage(BasePage):
         current_login = self.get_element_text(self.LOGIN_ICON).replace(" ", "")
         assert current_login == login, f'Ожидалось {login} но получено {current_login}'
 
+    def logout(self):
+        self.wait_element(self.LOGIN_ICON)
+        self.click(self.LOGIN_ICON)
+        self.click(self.LOGOUT_BTN)
+        self.wait_element(self.LOGO)
+        current_text = self.get_element_text(self.LOGIN_MSG)
+        assert current_text == 'Платформа удаленного администрирования'
+        text_btn = self.get_element_text(self.LOGIN_AGAIN_BTN)
+        assert text_btn == 'Войти снова'
+
     @allure.step("Восстановить пароль")
     def reset_pass(self):
         self.wait_element(self.LOGO)
         self.click(self.RESTORE_PASS, 'ссылка [Забыли свой пароль или имя пользователя?]')
         text = self.get_element_text(self.LOGIN_MSG)
         assert text == 'Забыли пароль? Введите свой адрес электронной почты ниже, и мы вышлем вам инструкцию, как установить новый пароль.'
+        self.assert_placeholder(self.EMAIL_FIELD, 'Адрес электронной почты')
         text_btn = self.get_element_text(self.SUBMIT_BTN)
         assert text_btn == 'Восстановить мой пароль'
         self.set_text(self.EMAIL_FIELD, valid_email)

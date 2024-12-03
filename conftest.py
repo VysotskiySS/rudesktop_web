@@ -20,9 +20,7 @@ def setup_browser(base_url):
     options.add_argument("--lang=en-US")
     browser.config.timeout = 10
     browser.config.driver_options = options
-    # BasePage().open_url(base_url)
     browser.open(base_url)
-    # return driver
 
 def open_unsafe():
     try:

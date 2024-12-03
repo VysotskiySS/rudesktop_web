@@ -12,7 +12,7 @@ class TestLoginPage:
     @pytest.mark.smoke
     @pytest.mark.regress
     @allure.title('Авторизоваться под локальной учетной записью')
-    @allure.testcase("https://dev.corp.rudesktop.ru/-/testy/projects/2/suites/8?test_case=000")
+    @allure.testcase("https://dev.corp.rudesktop.ru/-/testy/projects/2/suites/8?test_case=208")
     def test_local_login(self):
         page = LoginPage()
         page.login()
@@ -20,11 +20,24 @@ class TestLoginPage:
     @pytest.mark.login
     @pytest.mark.smoke
     @pytest.mark.regress
+    @allure.title('Авторизоваться под локальной учетной записью')
+    @allure.testcase("https://dev.corp.rudesktop.ru/-/testy/projects/2/suites/8?test_case=213")
+    def test_logout(self):
+        page = LoginPage()
+        page.login()
+        page.logout()
+
+    @pytest.mark.login
+    @pytest.mark.smoke
+    @pytest.mark.regress
     @allure.title('Форма восстановления пароля')
-    @allure.testcase("https://dev.corp.rudesktop.ru/-/testy/projects/2/suites/8?test_case=000")
+    @allure.testcase("https://dev.corp.rudesktop.ru/-/testy/projects/2/suites/8?test_case=211")
     def test_reset_pass(self):
         page = LoginPage()
         page.reset_pass()
+
+
+
 
 
 
