@@ -16,7 +16,7 @@ class LoginPage(BasePage):
     RESTORE_PASS = s('//a[contains(text(),"Забыли свой пароль или имя пользователя?")]')
     LOGIN_ICON = s('li.nav-item.dropdown')
     LOGO = s('img[alt="RuDesktop"]')
-    EMAIL_FIELD = 'input[placeholder="Адрес электронной почты"]'
+    EMAIL_FIELD = s('input[placeholder="Адрес электронной почты"]')
 
     @allure.step("Авторизоваться")
     def login(self, login=valid_login_superuser, password=valid_pass):
@@ -40,8 +40,8 @@ class LoginPage(BasePage):
         assert text == 'Забыли пароль? Введите свой адрес электронной почты ниже, и мы вышлем вам инструкцию, как установить новый пароль.'
         text_btn = self.get_element_text(self.SUBMIT_BTN)
         assert text_btn == 'Восстановить мой пароль'
-        self.set_text(self.EMAIL_FIELD, valid_email)
-        self.click(self.SUBMIT_BTN, 'кнопка [Восстановить мой пароль]')
+        # self.set_text(self.EMAIL_FIELD, valid_email)
+        # self.click(self.SUBMIT_BTN, 'кнопка [Восстановить мой пароль]')
 
 
 

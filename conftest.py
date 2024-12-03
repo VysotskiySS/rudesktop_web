@@ -29,7 +29,7 @@ def open_unsafe():
         pass
 
 def browser_teardown():
-    BasePage.get_screenshot()
+    BasePage().get_screenshot()
     browser.close()
     browser.quit()
 
@@ -40,7 +40,7 @@ def close_cookie():
     except:
         pass
 
-@pytest.fixture()
+@pytest.fixture(scope="function")
 def setup(request):
     base_url = 'https://192.168.10.74'
     setup_browser(base_url)
