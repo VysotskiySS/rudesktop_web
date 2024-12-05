@@ -77,47 +77,60 @@ class MainPage(BasePage):
 
     def invalid_change_password(self, password=new_pass):
         self.open_change_pass()
-        self.set_text(MainLocators.OLD_PASSWORD_FIELD, valid_pass)
-        self.set_text(MainLocators.NEW_PASSWORD_FIELD, '1234567')
-        self.set_text(MainLocators.CONFIRM_NEW_PASSWORD_FIELD, '1234567')
-        self.click_change_pass()
-        error_msg_text = self.get_element_text(MainLocators.DANGER_MSG)
-        assert error_msg_text == 'Пожалуйста исправьте ошибки.'
-        error_list = self.get_element_text(MainLocators.ERROR_LIST)
-        error_list = self.parse_multiline_string(error_list)
-        assert error_list[0] == 'Введённый пароль слишком короткий. Он должен содержать как минимум 8 символов.'
-        assert error_list[1] == 'Введённый пароль слишком широко распространён.'
+        with allure.step("Неверный старый пароль"):
+            self.set_text(MainLocators.OLD_PASSWORD_FIELD, 'InValidPass')
+            self.set_text(MainLocators.NEW_PASSWORD_FIELD, password)
+            self.set_text(MainLocators.CONFIRM_NEW_PASSWORD_FIELD, password)
+            self.click_change_pass()
+            error_msg_text = self.get_element_text(MainLocators.DANGER_MSG)
+            assert error_msg_text == 'Пожалуйста исправьте ошибки.'
+            error_list = self.get_element_text(MainLocators.ERROR_LIST)
+            error_list = self.parse_multiline_string(error_list)
+            assert error_list[0] == 'Ваш старый пароль введен неправильно. Пожалуйста, введите его снова.'
+        with allure.step("Попытка установить короткий и простой пароль"):
+            self.set_text(MainLocators.OLD_PASSWORD_FIELD, valid_pass)
+            self.set_text(MainLocators.NEW_PASSWORD_FIELD, '1234567')
+            self.set_text(MainLocators.CONFIRM_NEW_PASSWORD_FIELD, '1234567')
+            self.click_change_pass()
+            error_msg_text = self.get_element_text(MainLocators.DANGER_MSG)
+            assert error_msg_text == 'Пожалуйста исправьте ошибки.'
+            error_list = self.get_element_text(MainLocators.ERROR_LIST)
+            error_list = self.parse_multiline_string(error_list)
+            assert error_list[0] == 'Введённый пароль слишком короткий. Он должен содержать как минимум 8 символов.'
+            assert error_list[1] == 'Введённый пароль слишком широко распространён.'
+        with allure.step("Попытка установить простой пароль"):
+            self.set_text(MainLocators.OLD_PASSWORD_FIELD, valid_pass)
+            self.set_text(MainLocators.NEW_PASSWORD_FIELD, '12345678')
+            self.set_text(MainLocators.CONFIRM_NEW_PASSWORD_FIELD, '12345678')
+            self.click_change_pass()
+            error_msg_text = self.get_element_text(MainLocators.DANGER_MSG)
+            assert error_msg_text == 'Пожалуйста исправьте ошибки.'
+            error_list = self.get_element_text(MainLocators.ERROR_LIST)
+            error_list = self.parse_multiline_string(error_list)
+            assert error_list[0] == 'Введённый пароль слишком широко распространён.'
+        with allure.step("Попытка установить короткий пароль"):
+            self.set_text(MainLocators.OLD_PASSWORD_FIELD, valid_pass)
+            self.set_text(MainLocators.NEW_PASSWORD_FIELD, 'S0cut')
+            self.set_text(MainLocators.CONFIRM_NEW_PASSWORD_FIELD, 'S0cut')
+            self.click_change_pass()
+            error_msg_text = self.get_element_text(MainLocators.DANGER_MSG)
+            assert error_msg_text == 'Пожалуйста исправьте ошибки.'
+            error_list = self.get_element_text(MainLocators.ERROR_LIST)
+            error_list = self.parse_multiline_string(error_list)
+            assert error_list[0] == 'Введённый пароль слишком короткий. Он должен содержать как минимум 8 символов.'
+        with allure.step("Пароль и подтверждение пароля не совпадают"):
+            self.set_text(MainLocators.OLD_PASSWORD_FIELD, valid_pass)
+            self.set_text(MainLocators.NEW_PASSWORD_FIELD, password)
+            self.set_text(MainLocators.CONFIRM_NEW_PASSWORD_FIELD, 'NewPassw')
+            self.click_change_pass()
+            error_msg_text = self.get_element_text(MainLocators.DANGER_MSG)
+            assert error_msg_text == 'Пожалуйста исправьте ошибки.'
+            error_list = self.get_element_text(MainLocators.ERROR_LIST)
+            error_list = self.parse_multiline_string(error_list)
+            assert error_list[0] == 'Введенные пароли не совпадают.'
 
-        self.set_text(MainLocators.OLD_PASSWORD_FIELD, valid_pass)
-        self.set_text(MainLocators.NEW_PASSWORD_FIELD, '12345678')
-        self.set_text(MainLocators.CONFIRM_NEW_PASSWORD_FIELD, '12345678')
-        self.click_change_pass()
-        error_msg_text = self.get_element_text(MainLocators.DANGER_MSG)
-        assert error_msg_text == 'Пожалуйста исправьте ошибки.'
-        error_list = self.get_element_text(MainLocators.ERROR_LIST)
-        error_list = self.parse_multiline_string(error_list)
-        assert error_list[0] == 'Введённый пароль слишком широко распространён.'
 
-        self.set_text(MainLocators.OLD_PASSWORD_FIELD, valid_pass)
-        self.set_text(MainLocators.NEW_PASSWORD_FIELD, 'S0cut')
-        self.set_text(MainLocators.CONFIRM_NEW_PASSWORD_FIELD, 'S0cut')
-        self.click_change_pass()
-        error_msg_text = self.get_element_text(MainLocators.DANGER_MSG)
-        assert error_msg_text == 'Пожалуйста исправьте ошибки.'
-        error_list = self.get_element_text(MainLocators.ERROR_LIST)
-        error_list = self.parse_multiline_string(error_list)
-        assert error_list[0] == 'Введённый пароль слишком короткий. Он должен содержать как минимум 8 символов.'
-
-        self.set_text(MainLocators.OLD_PASSWORD_FIELD, valid_pass)
-        self.set_text(MainLocators.NEW_PASSWORD_FIELD, password)
-        self.set_text(MainLocators.CONFIRM_NEW_PASSWORD_FIELD, 'NewPassw')
-        self.click_change_pass()
-        error_msg_text = self.get_element_text(MainLocators.DANGER_MSG)
-        assert error_msg_text == 'Пожалуйста исправьте ошибки.'
-        error_list = self.get_element_text(MainLocators.ERROR_LIST)
-        error_list = self.parse_multiline_string(error_list)
-        assert error_list[0] == 'Введенные пароли не совпадают.'
-
+    @allure.step("Изменить пароль")
     def change_password(self, new_password=new_pass, old_password=valid_pass):
         self.open_change_pass()
         self.set_text(MainLocators.OLD_PASSWORD_FIELD, old_password)

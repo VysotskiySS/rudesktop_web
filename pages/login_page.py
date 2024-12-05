@@ -1,16 +1,14 @@
 import allure
 
-from locators import LoginLocators
+from locators import LoginLocators, MainLocators
 from pages.base_page import BasePage
 from selene.api import be, have, s
 from config import *
 
 class LoginPage(BasePage):
 
-
-
     @allure.step("Авторизоваться")
-    def login(self, login=valid_login_superuser, password=valid_pass):
+    def check_login(self, login=valid_login_superuser, password=valid_pass):
         self.wait_element(LoginLocators.LOGO)
         text_msg = self.get_element_text(LoginLocators.LOGIN_MSG)
         assert text_msg == 'Платформа удаленного администрирования'
@@ -18,12 +16,22 @@ class LoginPage(BasePage):
         assert text_btn == 'Войти'
         self.assert_placeholder(LoginLocators.LOGIN_FIELD, 'Логин')
         self.assert_placeholder(LoginLocators.PASSWORD_FIELD, 'Пароль')
-        self.set_text(LoginLocators.LOGIN_FIELD, login)
-        self.set_text(LoginLocators.PASSWORD_FIELD, password)
-        self.click(LoginLocators.SUBMIT_BTN, 'кнопка [Войти]')
+        self.login()
         current_login = self.get_element_text(LoginLocators.LOGIN_ICON).replace(" ", "")
         assert current_login == login, f'Ожидалось {login} но получено {current_login}'
 
+    @allure.step("Авторизоваться")
+    def login(self, login=valid_login_superuser, password=valid_pass):
+        self.set_text(LoginLocators.LOGIN_FIELD, login)
+        self.set_text(LoginLocators.PASSWORD_FIELD, password)
+        self.click(LoginLocators.SUBMIT_BTN, 'кнопка [Войти]')
+
+    def invalid_login_msg(self):
+        print('реализовать проверку сообщения при вводе невалидных данных при авторизации')
+        current_msg = self.get_element_text(MainLocators.DANGER_MSG)
+
+
+    @allure.step("Выйти из учетной записи пользователя")
     def logout(self):
         self.wait_element(LoginLocators.LOGIN_ICON)
         self.click(LoginLocators.LOGIN_ICON, 'иконка пользователя в верхнем правом углу')
@@ -54,5 +62,5 @@ class LoginPage(BasePage):
         assert current_text[1] == ref_text_2, f'Ожидалось {ref_text_2} но получен {current_text[1]}'
 
     def click_enter_again(self):
-        self.click(LoginLocators.ENTER_AGAIN_BTN)
+        self.click(LoginLocators.ENTER_AGAIN_BTN, 'кнопка [Войти снова]')
 
