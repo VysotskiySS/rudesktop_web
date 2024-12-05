@@ -1,4 +1,4 @@
-# file /rudesktop_web/tests/test_login_page.py
+# file /rudesktop_web/tests/test_login.py
 
 import allure
 import pytest

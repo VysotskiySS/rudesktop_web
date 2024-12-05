@@ -1,5 +1,6 @@
 import allure
 
+from locators import LoginLocators
 from pages.base_page import BasePage
 from selene.api import be, have, s
 from config import *
@@ -64,4 +65,7 @@ class LoginPage(BasePage):
         current_text = current_text.split('\n')
         assert current_text[0] == ref_text_1, f'Ожидалось {ref_text_1} но получен {current_text[0]}'
         assert current_text[1] == ref_text_2, f'Ожидалось {ref_text_2} но получен {current_text[1]}'
+
+    def click_enter_again(self):
+        self.click(LoginLocators.ENTER_AGAIN_BTN)
 

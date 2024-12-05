@@ -1,9 +1,10 @@
-# file /rudesktop_web/tests/test_main_page.py
+# file /rudesktop_web/tests/test_remote_control.py
 
 import allure
 import pytest
 
 from pages.login_page import LoginPage
+from pages.remote_control_page import RemoteControlPage
 from pages.main_page import MainPage
 
 @pytest.mark.usefixtures("setup")
@@ -15,8 +16,11 @@ class TestMainPage:
     @pytest.mark.regress
     @allure.title('Проверка пунктов меню')
     @allure.testcase("https://dev.corp.rudesktop.ru/-/testy/projects/2/suites/8?test_case=212")
-    def test_left_menu(self):
+    def test_find_device(self):
         login = LoginPage()
         login.login()
         main = MainPage()
-        main.check_left_menu()
+        main.open_devices()
+        rc = RemoteControlPage()
+        rc.filter_search()
+

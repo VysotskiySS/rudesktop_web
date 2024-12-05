@@ -15,6 +15,7 @@ from selene.support.shared import browser
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from locators import *
 
 
 class BasePage:
@@ -222,3 +223,11 @@ class BasePage:
     @allure.step("Обновление страницы")
     def reload_page(self):
         browser.driver.refresh()
+
+    def parse_multiline_string(self, string):
+        string = string.split('\n')
+        return string
+
+    def assert_active_bread_crumbs(self, reference_text):
+        current_text = self.get_element_text(HeaderLocators.ACTIVE_BREAD_CRUMB)
+        assert current_text == reference_text, f'Текст активной страницы в хлебных крошках должен быть {reference_text} но получен {current_text}'
