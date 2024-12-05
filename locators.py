@@ -90,3 +90,17 @@ class MainLocators:
 
 class LoginLocators:
     ENTER_AGAIN_BTN = s('//a[@href="/"]')
+    LOGIN_MSG = s('//p[@class="login-box-msg"]')
+    PASSWORD_FIELD = s('//input[@id="password"]')
+    LOGIN_FIELD = s('//input[@id="username"]')
+    METHOD_AUTH = s('//select[@name="domain"]')
+    DOMAIN_SELECTOR = s('//option[value="@win2012.local"]')
+    LOCAL_SELECTOR = s('//option[value="@Локальный"]')
+    SUBMIT_BTN = s('//button[@type="submit"]')
+    RESTORE_PASS = s('//a[contains(text(),"Забыли свой пароль или имя пользователя?")]')
+    LOGIN_ICON = s('li.nav-item.dropdown')
+    LOGO = s('img[alt="RuDesktop"]')
+    EMAIL_FIELD = s('input[placeholder="Адрес электронной почты"]')
+    MSG_RECOVERY = s('//div[@class="card-body"]')
+    LOGOUT_BTN = s('//a[@href="/logout/"]')
+    LOGIN_AGAIN_BTN = s('//a[@class="btn btn-primary btn-block"]')
