@@ -36,13 +36,23 @@ class TestMainPage:
     @pytest.mark.main
     @pytest.mark.smoke
     @pytest.mark.regress
-    @allure.title('Изменить пароль пользователя')
+    @allure.title('Изменить пароль пользователя (невалидные данные)')
+    @allure.testcase("")
+    def test_change_password_invalid(self):
+        login = LoginPage()
+        login.login()
+        main = MainPage()
+        main.invalid_change_password()
+
+    @pytest.mark.main
+    @pytest.mark.smoke
+    @pytest.mark.regress
+    @allure.title('Изменить пароль пользователя (валидные данные)')
     @allure.testcase("")
     def test_change_password(self):
         login = LoginPage()
         login.login()
         main = MainPage()
-        main.invalid_change_password()
         main.change_password()
         login.logout()
         login.click_enter_again()

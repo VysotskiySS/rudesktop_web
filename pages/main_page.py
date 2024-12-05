@@ -8,10 +8,6 @@ from config import *
 
 class MainPage(BasePage):
 
-
-
-
-
     @allure.step("Проверить наличие пунктов меню")
     def check_left_menu(self):
         l1_menu = [MenuLocators.CONTROL_PANEL, MenuLocators.REMOTE_ACCESS, MenuLocators.MANAGEMENT_UEM, MenuLocators.ORGANIZATION, MenuLocators.AUDIT, MenuLocators.INVENTORY, MenuLocators.REPORTS, MenuLocators.STORAGE, MenuLocators.ADMINISTRATION]
@@ -58,28 +54,33 @@ class MainPage(BasePage):
         for menu_item in l2_administration:
             self.wait_element(menu_item)
 
+    @allure.step("Открыть пункт меню [Устройства]")
     def open_devices(self):
         self.click(MenuLocators.REMOTE_ACCESS, 'пункт меню [Удаленный доступ]')
         self.click(MenuLocators.DEVICES, 'пункт меню [Устройства]')
         self.assert_active_bread_crumbs('Устройства')
 
+    @allure.step("Открыть страницу [Профиль]")
     def open_profile(self):
-        self.click(HeaderLocators.LOGIN_ICON)
-        self.click(HeaderLocators.PROFILE)
+        self.click(HeaderLocators.LOGIN_ICON, 'Иконка [Пользователь]')
+        self.click(HeaderLocators.PROFILE, 'кнопка [Профиль]')
         self.assert_active_bread_crumbs('rude')
 
+    def click_change_pass(self):
+        self.click(MainLocators.CHANGE_PASSWORD_BTN, 'кнопка [Изменить пароль]')
+
+    @allure.step("Открыть страницу [Изменение пароля]")
     def open_change_pass(self):
-        self.click(HeaderLocators.LOGIN_ICON)
-        self.click(HeaderLocators.CHANGE_PASSWORD)
+        self.click(HeaderLocators.LOGIN_ICON, 'Иконка [Пользователь]')
+        self.click(HeaderLocators.CHANGE_PASSWORD, 'кнопка [Изменить пароль]')
         self.assert_active_bread_crumbs('Изменение пароля')
 
     def invalid_change_password(self, password=new_pass):
         self.open_change_pass()
-
         self.set_text(MainLocators.OLD_PASSWORD_FIELD, valid_pass)
         self.set_text(MainLocators.NEW_PASSWORD_FIELD, '1234567')
         self.set_text(MainLocators.CONFIRM_NEW_PASSWORD_FIELD, '1234567')
-        self.click(MainLocators.CHANGE_PASSWORD_BTN)
+        self.click_change_pass()
         error_msg_text = self.get_element_text(MainLocators.DANGER_MSG)
         assert error_msg_text == 'Пожалуйста исправьте ошибки.'
         error_list = self.get_element_text(MainLocators.ERROR_LIST)
@@ -90,7 +91,7 @@ class MainPage(BasePage):
         self.set_text(MainLocators.OLD_PASSWORD_FIELD, valid_pass)
         self.set_text(MainLocators.NEW_PASSWORD_FIELD, '12345678')
         self.set_text(MainLocators.CONFIRM_NEW_PASSWORD_FIELD, '12345678')
-        self.click(MainLocators.CHANGE_PASSWORD_BTN)
+        self.click_change_pass()
         error_msg_text = self.get_element_text(MainLocators.DANGER_MSG)
         assert error_msg_text == 'Пожалуйста исправьте ошибки.'
         error_list = self.get_element_text(MainLocators.ERROR_LIST)
@@ -100,7 +101,7 @@ class MainPage(BasePage):
         self.set_text(MainLocators.OLD_PASSWORD_FIELD, valid_pass)
         self.set_text(MainLocators.NEW_PASSWORD_FIELD, 'S0cut')
         self.set_text(MainLocators.CONFIRM_NEW_PASSWORD_FIELD, 'S0cut')
-        self.click(MainLocators.CHANGE_PASSWORD_BTN)
+        self.click_change_pass()
         error_msg_text = self.get_element_text(MainLocators.DANGER_MSG)
         assert error_msg_text == 'Пожалуйста исправьте ошибки.'
         error_list = self.get_element_text(MainLocators.ERROR_LIST)
@@ -110,7 +111,7 @@ class MainPage(BasePage):
         self.set_text(MainLocators.OLD_PASSWORD_FIELD, valid_pass)
         self.set_text(MainLocators.NEW_PASSWORD_FIELD, password)
         self.set_text(MainLocators.CONFIRM_NEW_PASSWORD_FIELD, 'NewPassw')
-        self.click(MainLocators.CHANGE_PASSWORD_BTN)
+        self.click_change_pass()
         error_msg_text = self.get_element_text(MainLocators.DANGER_MSG)
         assert error_msg_text == 'Пожалуйста исправьте ошибки.'
         error_list = self.get_element_text(MainLocators.ERROR_LIST)
@@ -122,7 +123,7 @@ class MainPage(BasePage):
         self.set_text(MainLocators.OLD_PASSWORD_FIELD, old_password)
         self.set_text(MainLocators.NEW_PASSWORD_FIELD, new_password)
         self.set_text(MainLocators.CONFIRM_NEW_PASSWORD_FIELD, new_password)
-        self.click(MainLocators.CHANGE_PASSWORD_BTN)
+        self.click_change_pass()
         self.wait_element_hidden(MainLocators.DANGER_MSG)
         self.wait_element_hidden(MainLocators.ERROR_LIST)
         success_msg_text = self.get_element_text(MainLocators.SUCCESS_MSG)
