@@ -67,9 +67,8 @@ class TestMainPage:
 
     @pytest.mark.main
     @pytest.mark.smoke
-    @pytest.mark.regress
-    @allure.title('Создать учетную запись)')
-    @allure.testcase("https://dev.corp.rudesktop.ru/-/testy/projects/2/suites/8?test_case=")
+    @allure.title('Создать учетную запись')
+    @allure.testcase("https://dev.corp.rudesktop.ru/-/testy/projects/2/suites/8?test_case=222")
     def test_create_user(self):
         login = LoginPage()
         login.create_new_user()
