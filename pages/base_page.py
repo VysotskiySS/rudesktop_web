@@ -3,8 +3,10 @@
 import ast
 import os
 import random
+import string
 import re
 import time
+from faker import Faker
 
 import allure
 import pytest
@@ -37,6 +39,13 @@ class BasePage:
         else:
             return element.get(query.text)
 
+    def open_unsafe(self):
+        try:
+            SystemLocators.details_btn.click()
+            SystemLocators.go_unsafe.click()
+        except:
+            pass
+
     @allure.step("Проверка значения атрибута placeholder элемента")
     def assert_placeholder(self, element, text):
         element = element()
@@ -46,13 +55,6 @@ class BasePage:
     @allure.step("Взять тело из элемента '{element_name}'")
     def get_element_value(self, element, element_name):
         return element.get(query.tag)
-
-    def set_text(self, element, text, element_name=None):
-        if text is not None:
-            with allure.step(f"Заполнение поля '{element_name}' текстом '{text}'"):
-                element.set_value(text)
-        else:
-            element.set_value(text)
 
     def set_text(self, element, text, element_name=None):
         if text is not None:
@@ -231,3 +233,21 @@ class BasePage:
     def assert_active_bread_crumbs(self, reference_text):
         current_text = self.get_element_text(HeaderLocators.ACTIVE_BREAD_CRUMB)
         assert current_text == reference_text, f'Текст активной страницы в хлебных крошках должен быть {reference_text} но получен {current_text}'
+
+    def generate_random_name(self, base_name='username', length=5):
+        # Генерируем случайную строку из букв заданной длины
+        random_part = ''.join(random.choices(string.ascii_letters, k=length))
+        # Возвращаем полное имя, состоящее из постоянной и случайной части
+        return f"{base_name}_{random_part}"
+
+    def generate_random_email(self, base_email='rude', length=8):
+        # Генерируем случайную строку из букв заданной длины
+        random_part = ''.join(random.choices(string.ascii_lowercase, k=length))
+        # Возвращаем полный адрес, состоящее из постоянной и случайной части
+        return f"{base_email}-{random_part}@mailforspam.com"
+
+    def generate_random_full_name(self):
+        fake = Faker()
+        first_name = fake.first_name()
+        last_name = fake.last_name()
+        return f"{first_name} {last_name} Rudesktopovich"

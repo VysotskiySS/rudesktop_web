@@ -1,6 +1,10 @@
 from selene.api import be, have, s
 from config import *
 
+class SystemLocators:
+    details_btn = s('//button[contains(.,"Дополнительные")]')
+    go_unsafe = s("//a[contains(text(), 'Перейти на сайт')]")
+
 class MenuLocators:
     # LEFT_MENU_L1
     CONTROL_PANEL = s('//p[contains(text(),"Панель управления")]')
@@ -85,14 +89,23 @@ class MainLocators:
     CHANGE_PASSWORD_BTN = s('//*[@value="Изменить пароль"]')
 
     SUCCESS_MSG = s('//div[@class="callout callout-success"]')
-    DANGER_MSG = s('//div[@class="callout callout-danger"]')
+    DANGER_MSG = s('//div[@class="callout callout-danger"]/p')
     ERROR_LIST = s('//ul[@class="errorlist"]')
 
 class LoginLocators:
     ENTER_AGAIN_BTN = s('//a[@href="/"]')
     LOGIN_MSG = s('//p[@class="login-box-msg"]')
     PASSWORD_FIELD = s('//input[@id="password"]')
-    LOGIN_FIELD = s('//input[@id="username"]')
+
+    LOGIN_FIELD = s('//input[@name="username"]')
+    # EMAIL_FIELD = s('input[placeholder="Адрес электронной почты"]')
+    EMAIL_FIELD = s('//input[@name="email"]')
+    FULL_NAME_FIELD = s('//input[@name="full_name"]')
+    PHONE_FIELD = s('//input[@name="phone"]')
+    REG_PASSWORD_FIELD = s('//input[@name="password1"]')
+    REG_PASSWORD_CONFIRM = s('//input[@name="password2"]')
+    REGISTRATION_BTN = s('//button[contains(text(), "Зарегистрироваться") and @type="submit"]')
+
     METHOD_AUTH = s('//select[@name="domain"]')
     DOMAIN_SELECTOR = s('//option[value="@win2012.local"]')
     LOCAL_SELECTOR = s('//option[value="@Локальный"]')
@@ -100,7 +113,11 @@ class LoginLocators:
     RESTORE_PASS = s('//a[contains(text(),"Забыли свой пароль или имя пользователя?")]')
     LOGIN_ICON = s('li.nav-item.dropdown')
     LOGO = s('img[alt="RuDesktop"]')
-    EMAIL_FIELD = s('input[placeholder="Адрес электронной почты"]')
+
     MSG_RECOVERY = s('//div[@class="card-body"]')
     LOGOUT_BTN = s('//a[@href="/logout/"]')
     LOGIN_AGAIN_BTN = s('//a[@class="btn btn-primary btn-block"]')
+    CREATE_USER = s('//a[@href="/account/register/"]')
+
+    I_HAVE_PROFILE = s('//a[@href="/login/"]')
+    ENTER_BTN = s('//button[contains(text(), "Войти")]')

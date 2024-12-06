@@ -64,3 +64,12 @@ class TestMainPage:
         login.invalid_login_msg()
         login.login(password=new_pass)
         main.change_password(new_password=valid_pass, old_password=new_pass)
+
+    @pytest.mark.main
+    @pytest.mark.smoke
+    @pytest.mark.regress
+    @allure.title('Создать учетную запись)')
+    @allure.testcase("https://dev.corp.rudesktop.ru/-/testy/projects/2/suites/8?test_case=")
+    def test_create_user(self):
+        login = LoginPage()
+        login.create_new_user()

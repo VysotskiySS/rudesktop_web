@@ -6,8 +6,8 @@ from selenium import webdriver
 from pages.base_page import BasePage
 from selene.api import be, have, s
 
-details_btn = s('//button[contains(.,"Дополнительные")]')
-go_unsafe = s("//a[contains(text(), 'Перейти на сайт')]")
+# details_btn = s('//button[contains(.,"Дополнительные")]')
+# go_unsafe = s("//a[contains(text(), 'Перейти на сайт')]")
 
 def setup_browser(base_url):
     options = webdriver.ChromeOptions()
@@ -21,13 +21,14 @@ def setup_browser(base_url):
     browser.config.timeout = 10
     browser.config.driver_options = options
     browser.open(base_url)
+    # return browser
 
-def open_unsafe():
-    try:
-        details_btn.click()
-        go_unsafe.click()
-    except:
-        pass
+# def open_unsafe():
+#     try:
+#         details_btn.click()
+#         go_unsafe.click()
+#     except:
+#         pass
 
 def browser_teardown():
     BasePage().get_screenshot()
@@ -45,6 +46,6 @@ def close_cookie():
 def setup(request):
     base_url = 'https://192.168.10.74'
     setup_browser(base_url)
-    open_unsafe()
+    BasePage().open_unsafe()
     yield
     browser_teardown()
