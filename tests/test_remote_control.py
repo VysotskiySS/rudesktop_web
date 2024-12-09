@@ -9,11 +9,10 @@ from pages.main_page import MainPage
 
 @pytest.mark.usefixtures("setup")
 @allure.feature("Удаленный доступ")
-class TestMainPage:
+class TestRemoteControlPage:
 
     @pytest.mark.main
     @pytest.mark.smoke
-    @pytest.mark.regress
     @allure.title('Фильтр - Поиск устройства')
     @allure.testcase("")
     def test_find_device(self):
