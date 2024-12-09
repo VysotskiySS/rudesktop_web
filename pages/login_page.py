@@ -127,7 +127,7 @@ class LoginPage(BasePage):
         self.click(LoginLocators.ENTER_BTN)
 
         self.login(login=name, password=valid_pass)
-        current_full_name = self.get_element_text(LoginLocators.LOGIN_ICON)
+        current_full_name = self.get_element_text(LoginLocators.LOGIN_ICON).lstrip()
         assert current_full_name == full_name, f'Ожидалось имя пользователя {full_name}, но получено {current_full_name}'
         # main.open_profile()
         # открыть профиль сверить данные
