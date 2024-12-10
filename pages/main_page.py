@@ -28,6 +28,7 @@ class MainPage(BasePage):
         self.click(HeaderLocators.CHANGE_PASSWORD, 'кнопка [Изменить пароль]')
         self.assert_active_bread_crumbs('Изменение пароля')
 
+    @allure.step("Проверить отображение ошибок при невалидных вариантах пароля")
     def invalid_change_password(self, password=new_pass):
         self.open_change_pass()
         with allure.step("Неверный старый пароль"):

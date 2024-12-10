@@ -104,39 +104,39 @@ class MenuPage(BasePage):
         }
         l2_remote_access = [MenuLocators.DEVICES, MenuLocators.SESSIONS, MenuLocators.ADDRESSES, MenuLocators.TAGS]
         for menu_item in l2_remote_access:
-            self.click(menu_item)
+            self.click(menu_item, f'пункт меню[{values_to_check.get(menu_item, None)}]')
             current_text = self.get_element_text(HeaderLocators.ACTIVE_BREAD_CRUMB)
             assert  current_text == values_to_check.get(menu_item, None)
 
         self.click(MenuLocators.MANAGEMENT_UEM, 'пункт меню [Управление (UEM)]')
         l2_management_uem = [MenuLocators.POLICIES, MenuLocators.TASKS, MenuLocators.OS_INSTALLATION, MenuLocators.REQUESTS]
         for menu_item in l2_management_uem:
-            self.click(menu_item)
+            self.click(menu_item, f'пункт меню[{values_to_check.get(menu_item, None)}]')
             current_text = self.get_element_text(HeaderLocators.ACTIVE_BREAD_CRUMB)
             assert current_text == values_to_check.get(menu_item, None), f'Ожидалось {values_to_check.get(menu_item, None)}, но получено {current_text}'
 
         self.click(MenuLocators.ORGANIZATION, 'пункт меню [Организация]')
-        self.click(MenuLocators.STRUCTURE)
+        self.click(MenuLocators.STRUCTURE, 'пункт меню [Структура]')
         current_text = self.get_element_text(s('//li[@class="nav-item d-none d-sm-inline-block"]//li[2]'))
         assert current_text == 'Структура организации'
 
         l2_organization = [MenuLocators.USERS, MenuLocators.GROUPS, MenuLocators.DOMAINS, MenuLocators.DYNAMIC_GROUPS, MenuLocators.DEPARTMENTS, MenuLocators.INVITATIONS, MenuLocators.NOTIFICATIONS]
         for menu_item in l2_organization:
-            self.click(menu_item)
+            self.click(menu_item, f'пункт меню[{values_to_check.get(menu_item, None)}]')
             current_text = self.get_element_text(HeaderLocators.ACTIVE_BREAD_CRUMB)
             assert current_text == values_to_check.get(menu_item, None), f'Ожидалось {values_to_check.get(menu_item, None)}, но получено {current_text}'
 
         self.click(MenuLocators.AUDIT, 'пункт меню [Аудит]')
         l2_audit = [MenuLocators.EXECUTION_LOGS, MenuLocators.OBJECTS, MenuLocators.SYSTEM_LOGINS, MenuLocators.HTTP_REQUESTS, MenuLocators.ALL_LOGS]
         for menu_item in l2_audit:
-            self.click(menu_item)
+            self.click(menu_item, f'пункт меню[{values_to_check.get(menu_item, None)}]')
             current_text = self.get_element_text(HeaderLocators.ACTIVE_BREAD_CRUMB)
             assert current_text == values_to_check.get(menu_item, None), f'Ожидалось {values_to_check.get(menu_item, None)}, но получено {current_text}'
 
         self.click(MenuLocators.INVENTORY, 'пункт меню [Инвентаризация]')
         l2_inventory = [MenuLocators.RESOURCE_AVAILABILITY, MenuLocators.RESOURCE_CATALOG]
         for menu_item in l2_inventory:
-            self.click(menu_item)
+            self.click(menu_item, f'пункт меню[{values_to_check.get(menu_item, None)}]')
             current_text = self.get_element_text(HeaderLocators.ACTIVE_BREAD_CRUMB)
             assert current_text == values_to_check.get(menu_item, None), f'Ожидалось {values_to_check.get(menu_item, None)}, но получено {current_text}'
 
@@ -144,26 +144,26 @@ class MenuPage(BasePage):
 
         l2_reports = [MenuLocators.TEMPLATES, MenuLocators.PREPARED_REPORTS]
         for menu_item in l2_reports:
-            self.click(menu_item)
+            self.click(menu_item, f'пункт меню[{values_to_check.get(menu_item, None)}]')
             current_text = self.get_element_text(HeaderLocators.ACTIVE_BREAD_CRUMB)
             assert current_text == values_to_check.get(menu_item, None), f'Ожидалось {values_to_check.get(menu_item, None)}, но получено {current_text}'
 
-        self.click(MenuLocators.TRENDS)
+        self.click(MenuLocators.TRENDS, 'пункт меню [Тренды]')
         current_text = self.get_element_text(s('//li[@class="nav-item d-none d-sm-inline-block"]//li[2]'))
         assert current_text == 'Тренды', f'Ожидалось Тренды, но получено {current_text}'
 
-        self.click(MenuLocators.GRAPH)
+        self.click(MenuLocators.GRAPH, 'пункт меню [Граф]')
         current_text = self.get_element_text(s('//li[@class="nav-item d-none d-sm-inline-block"]//li[2]'))
         assert current_text == 'Граф сети', f'Ожидалось Граф сети, но получено {current_text}'
 
-        self.click(MenuLocators.MAP)
+        self.click(MenuLocators.MAP, 'пункт меню [Карта]')
         current_text = self.get_element_text(s('//li[@class="nav-item d-none d-sm-inline-block"]//li[2]'))
         assert current_text == 'Карта', f'Ожидалось Карта, но получено {current_text}'
 
         self.click(MenuLocators.STORAGE, 'пункт меню [Хранилище]')
         l2_storage = [MenuLocators.REPOSITORIES, MenuLocators.FILES]
         for menu_item in l2_storage:
-            self.click(menu_item)
+            self.click(menu_item, f'пункт меню[{values_to_check.get(menu_item, None)}]')
             current_text = self.get_element_text(HeaderLocators.ACTIVE_BREAD_CRUMB)
             assert current_text == values_to_check.get(menu_item, None), f'Ожидалось {values_to_check.get(menu_item, None)}, но получено {current_text}'
 
@@ -171,13 +171,13 @@ class MenuPage(BasePage):
 
         l2_administration = [MenuLocators.SETTINGS, MenuLocators.KEY_CLOAK, MenuLocators.SUB_NETWORKS, MenuLocators.BRIDGES, MenuLocators.TASK_QUEUE, MenuLocators.BLACK_LIST, MenuLocators.WHITE_LIST, MenuLocators.CERTIFICATES, MenuLocators.SSH_ACCESS]
         for menu_item in l2_administration:
-            self.click(menu_item)
+            self.click(menu_item, f'пункт меню[{values_to_check.get(menu_item, None)}]')
             current_text = self.get_element_text(HeaderLocators.ACTIVE_BREAD_CRUMB)
             assert current_text == values_to_check.get(menu_item, None), f'Ожидалось {values_to_check.get(menu_item, None)}, но получено {current_text}'
 
-        self.click(MenuLocators.KICKSTART)
+        self.click(MenuLocators.KICKSTART, 'пункт меню [Kickstart]')
         current_text = self.get_element_text(s('//li[@class="nav-item d-none d-sm-inline-block"]//li[2]'))
         assert current_text == 'Kickstart', f'Ожидалось Kickstart, но получено {current_text}'
 
-        self.click(MenuLocators.LICENSE)
+        self.click(MenuLocators.LICENSE, 'пункт меню [Лицензия]')
         self.wait_element(s('//h1[contains(text(),"Информация о лицензии")]'))
