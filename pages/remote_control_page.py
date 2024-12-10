@@ -33,6 +33,16 @@ class RemoteControlPage(BasePage):
         self.click(RemoteAccessLocators.SAVE_BTN)
         self.wait_element(MainLocators.SUCCESS_ALERT)
 
+    @allure.step("Удалить адрес из адресной книги")
+    def delete_element_in_list(self):
+        self.click(MainLocators.MORE_OPTION_BTN, 'кнопка [...]')
+        self.click(MainLocators.OPTION_DELETE, 'пункт [Удалить] в списке опций')
+        count_string = self.get_element_text(s('//table[@class="table table-striped"]'))
+        count = self.get_int_from_str(count_string)
+        assert count == 1, f'На удаление отмечено {count} элементов, ожидался - 1'
+        self.click_btn_yes_i_am_sure()
+        self.wait_element(MainLocators.SUCCESS_ALERT)
+
     @allure.step("Открыть Теги")
     def open_tags(self):
         self.click(MenuLocators.REMOTE_ACCESS)
@@ -58,6 +68,9 @@ class RemoteControlPage(BasePage):
             count = 0
             return count
 
+    def click_btn_yes_i_am_sure(self):
+        self.click(RemoteAccessLocators.SUBMIT_BTN, 'кнопка [Да, я уверен]')
+
     @allure.step("Удалить все элементы из списка на странице")
     def clear_all_in_list(self):
         if self.count_element_in_list() > 0:
@@ -65,7 +78,7 @@ class RemoteControlPage(BasePage):
             self.click(RemoteAccessLocators.SELECTOR, 'селектор [Действия с выбранными объектами]')
             self.click(RemoteAccessLocators.DELETE_SELECTED, 'опция селектора [Удалить выбранные устройства]')
             self.click(RemoteAccessLocators.EXECUTE_BTN, 'кнопка [Выполнить]')
-            self.click(RemoteAccessLocators.SUBMIT_BTN, 'кнопка [Да, я уверен]')
+            self.click_btn_yes_i_am_sure()
             self.wait_element(MainLocators.SUCCESS_ALERT)
 
 

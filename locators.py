@@ -93,6 +93,9 @@ class MainLocators:
     ERROR_LIST = s('//ul[@class="errorlist"]')
     SUCCESS_ALERT = s('//div[@class="alert alert-success alert-dismissible"]')
 
+    MORE_OPTION_BTN = s('//div[@class="dropdown table-action"]')
+    OPTION_DELETE = s('//a[contains(@href, "/delete/")]')
+
 class LoginLocators:
     ENTER_AGAIN_BTN = s('//a[@href="/"]')
     LOGIN_MSG = s('//p[@class="login-box-msg"]')

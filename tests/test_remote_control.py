@@ -36,6 +36,19 @@ class TestRemoteControlPage:
 
     @pytest.mark.main
     @pytest.mark.smoke
+    @allure.title('Удалить адрес')
+    @allure.testcase("https://dev.corp.rudesktop.ru/-/testy/projects/2/suites/8?test_case=228")
+    def test_delete_address(self):
+        login = LoginPage()
+        login.login()
+        rc = RemoteControlPage()
+        rc.open_address_book()
+        rc.clear_all_in_list()
+        rc.add_address()
+        rc.delete_element_in_list()
+
+    @pytest.mark.main
+    @pytest.mark.smoke
     @allure.title('Добавить тег')
     @allure.testcase("https://dev.corp.rudesktop.ru/-/testy/projects/2/suites/8?test_case=227")
     def test_add_teg(self):
@@ -48,7 +61,20 @@ class TestRemoteControlPage:
 
     @pytest.mark.main
     @pytest.mark.smoke
-    @allure.title('Удалить устройства')
+    @allure.title('Удалить тег')
+    @allure.testcase("https://dev.corp.rudesktop.ru/-/testy/projects/2/suites/8?test_case=229")
+    def test_delete_teg(self):
+        login = LoginPage()
+        login.login()
+        rc = RemoteControlPage()
+        rc.open_tags()
+        rc.clear_all_in_list()
+        rc.add_tag()
+        rc.delete_element_in_list()
+
+    @pytest.mark.main
+    @pytest.mark.smoke
+    @allure.title('Удалить все устройства на странице')
     def test_delete_devices(self):
         login = LoginPage()
         login.login()

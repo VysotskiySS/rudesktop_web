@@ -84,6 +84,13 @@ class BasePage:
     def get_attribute(self, element, attribute):
         return element.get(query.attribute(attribute))
 
+    def get_int_from_str(self, input_string):
+        match = re.search(r'\d+', input_string)
+        if match:
+            number = int(match.group(0))
+            print(number)
+        return number
+
     # @allure.step("Получение текущего url")
     def get_url(self):
         return browser.driver.current_url
