@@ -36,13 +36,8 @@ class TestLoginPage:
     @pytest.mark.main
     @pytest.mark.smoke
     @allure.title('Создать учетную запись')
-    @allure.testcase("https://dev.corp.rudesktop.ru/-/testy/projects/2/suites/8?test_case=222")
+    @allure.testcase("https://dev.corp.rudesktop.ru/-/testy/projects/2/suites/8?test_case=225")
     def test_create_user(self):
         login = LoginPage()
         login.create_new_user()
-
-
-
-
-
 

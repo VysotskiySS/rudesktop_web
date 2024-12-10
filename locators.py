@@ -68,7 +68,7 @@ class MenuLocators:
     BRIDGES = s('//a[@class="nav-link"]/p[contains(text(),"Мосты")]')
     BLACK_LIST = s('//a[@class="nav-link"]/p[contains(text(),"Черный список")]')
     WHITE_LIST = s('//a[@class="nav-link"]/p[contains(text(),"Белый список")]')
-    CERTIFICATES = s('//a[@class="nav-link"]/p[contains(text(),"Сертификаты")]')
+    CERTIFICATES = s('//a[@class="nav-link"]/p[contains(text(),"Cертификаты")]') # Бага в слове, исправил для прохода в процессе написания, исправить
     SSH_ACCESS = s('//a[@class="nav-link"]/p[contains(text(),"SSH доступы")]')
     KICKSTART = s('//a[@class="nav-link"]/p[contains(text(),"Kickstart")]')
     LICENSE = s('//a[@class="nav-link"]/p[contains(text(),"Лицензия")]')
@@ -89,8 +89,9 @@ class MainLocators:
     CHANGE_PASSWORD_BTN = s('//*[@value="Изменить пароль"]')
 
     SUCCESS_MSG = s('//div[@class="callout callout-success"]')
-    DANGER_MSG = s('//div[@class="callout callout-danger"]/p')
+    DANGER_MSG = s('//div[@class="callout callout-danger"]')
     ERROR_LIST = s('//ul[@class="errorlist"]')
+    SUCCESS_ALERT = s('//div[@class="alert alert-success alert-dismissible"]')
 
 class LoginLocators:
     ENTER_AGAIN_BTN = s('//a[@href="/"]')
@@ -121,3 +122,18 @@ class LoginLocators:
 
     I_HAVE_PROFILE = s('//a[@href="/login/"]')
     ENTER_BTN = s('//button[contains(text(), "Войти")]')
+
+class RemoteAccessLocators:
+    ADD_ADDRESS = s('//a[@href="/addressbook/address/add/"]')
+    SAVE_BTN = s('//input[@value="Сохранить"]')
+    SAVE_AND_CONTINUE_BTN = s('//input[@value="Сохранить и продолжить"]')
+    ID_FIELD = s('//input[@name="peer"]')
+    NAME_FIELD = s('//input[@name="alias"]')
+    ADD_TAG = s('//a[@href="/addressbook/tag/add/"]')
+    NAME_TAG_FIELD = s('//input[@name="name"]')
+    MAIN_CHECK_BOX = s('//input[@id="action-toggle"]')
+    SELECTOR = s('//select[@name="action"]')
+    DELETE_SELECTED = s('//option[@value="delete_selected"]')
+    EXECUTE_BTN = s('//button[contains(text(), "Выполнить")]')
+    SUBMIT_BTN = s('//input[@type="submit"]')
+

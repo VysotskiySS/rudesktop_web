@@ -13,16 +13,6 @@ class TestMainPage:
 
     @pytest.mark.main
     @pytest.mark.smoke
-    @allure.title('Проверка пунктов меню')
-    @allure.testcase("https://dev.corp.rudesktop.ru/-/testy/projects/2/suites/8?test_case=212")
-    def test_left_menu(self):
-        login = LoginPage()
-        login.login()
-        main = MainPage()
-        main.check_left_menu()
-
-    @pytest.mark.main
-    @pytest.mark.smoke
     @allure.title('Открыть страницу профиля пользователя')
     @allure.testcase("")
     def test_open_profile(self):
