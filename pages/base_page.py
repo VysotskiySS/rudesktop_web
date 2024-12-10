@@ -1,18 +1,14 @@
 # file /rudesktop_web/pages/base_page.py
 
 import ast
-import os
 import random
 import string
 import re
 import time
 from faker import Faker
-
 import allure
 import pytest
 from selene import query, be
-
-from selene.support.conditions.be import visible, hidden
 from selene.support.shared import browser
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
@@ -73,6 +69,16 @@ class BasePage:
             element.click()
             self.wait_a_moment()
             self.get_screenshot()
+
+    def wait_text(self, text, timeout=10):
+        """
+        Ожидает появления указанного текста на странице.
+
+        :param text: Текст, который нужно ожидать.
+        :param timeout: Максимальное время ожидания в секундах.
+        """
+        # Ожидаем, что текст появится где-либо в теле страницы
+        browser.with_(timeout=timeout).should(have.text(text))
 
     # @allure.step("Получение атрибута")
     def get_attribute(self, element, attribute):

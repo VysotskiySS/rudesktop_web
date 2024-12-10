@@ -2,7 +2,6 @@
 
 import allure
 import pytest
-
 from config import new_pass, valid_pass
 from pages.login_page import LoginPage
 from pages.main_page import MainPage
@@ -41,14 +40,12 @@ class TestMainPage:
     @allure.testcase("https://dev.corp.rudesktop.ru/-/testy/projects/2/suites/8?test_case=224")
     def test_change_password(self):
         login = LoginPage()
-        login.login()
+        login.login(login='auto')
         main = MainPage()
         main.change_password()
         login.logout()
         login.click_enter_again()
-        login.login()
+        login.login(login='auto')
         login.invalid_login_msg()
-        login.login(password=new_pass)
+        login.login(login='auto', password=new_pass)
         main.change_password(new_password=valid_pass, old_password=new_pass)
-
-

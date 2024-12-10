@@ -1,5 +1,4 @@
-from selene.api import be, have, s
-from config import *
+from selene.api import s
 
 class SystemLocators:
     details_btn = s('//button[contains(.,"Дополнительные")]')
@@ -66,6 +65,7 @@ class MenuLocators:
     KEY_CLOAK = s('//a[@class="nav-link"]/p[contains(text(),"KeyCloak")]')
     SUB_NETWORKS = s('//a[@class="nav-link"]/p[contains(text(),"Подсети")]')
     BRIDGES = s('//a[@class="nav-link"]/p[contains(text(),"Мосты")]')
+    TASK_QUEUE = s('//a[@class="nav-link"]/p[contains(text(),"Очередь задач")]')
     BLACK_LIST = s('//a[@class="nav-link"]/p[contains(text(),"Черный список")]')
     WHITE_LIST = s('//a[@class="nav-link"]/p[contains(text(),"Белый список")]')
     CERTIFICATES = s('//a[@class="nav-link"]/p[contains(text(),"Cертификаты")]') # Бага в слове, исправил для прохода в процессе написания, исправить
@@ -108,8 +108,8 @@ class LoginLocators:
     REGISTRATION_BTN = s('//button[contains(text(), "Зарегистрироваться") and @type="submit"]')
 
     METHOD_AUTH = s('//select[@name="domain"]')
-    DOMAIN_SELECTOR = s('//option[value="@win2012.local"]')
-    LOCAL_SELECTOR = s('//option[value="@Локальный"]')
+    DOMAIN_SELECTOR = s('//option[@value="@win2012.local"]')
+    LOCAL_SELECTOR = s('//option[@value="@Локальный"]')
     SUBMIT_BTN = s('//button[@type="submit"]')
     RESTORE_PASS = s('//a[contains(text(),"Забыли свой пароль или имя пользователя?")]')
     LOGIN_ICON = s('li.nav-item.dropdown')
@@ -136,4 +136,15 @@ class RemoteAccessLocators:
     DELETE_SELECTED = s('//option[@value="delete_selected"]')
     EXECUTE_BTN = s('//button[contains(text(), "Выполнить")]')
     SUBMIT_BTN = s('//input[@type="submit"]')
-
+    FIND_BTN = s('//button[contains(text(),"Найти")]')
+    FILTER_SEARCH_FIELD = s('//input[@placeholder="Введите значение"]')
+    CHECK_BOX_DEVICE_IN_LIST = s('//input[@class="action-select"]')
+    ACTION_COUNTER = s('//span[@class="action-counter"]')
+    IMPORT_DEVICES_FROM_FILE_BTN = s('//i[@class="fas fa-file-import"]')
+    SELECT_ACTIONS = s('//select[@class="form-control"]')
+    # '//options[@value="delete_selected"]'
+    # '//options[@value="set_groups"]'
+    # '//options[@value="copy_to_address_book"]'
+    # '//options[@value="change_connection"]'
+    # '//options[@value="export"]'
+    # '//td[@class="action-checkbox"]'

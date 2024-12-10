@@ -2,8 +2,6 @@
 
 import allure
 import pytest
-
-from config import new_pass, valid_pass
 from pages.login_page import LoginPage
 from pages.menu_page import MenuPage
 

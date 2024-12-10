@@ -2,10 +2,10 @@
 
 import allure
 import pytest
-
 from pages.login_page import LoginPage
 from pages.remote_control_page import RemoteControlPage
 from pages.main_page import MainPage
+
 
 @pytest.mark.usefixtures("setup")
 @allure.feature("Удаленный доступ")

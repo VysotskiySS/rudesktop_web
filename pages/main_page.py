@@ -1,13 +1,11 @@
 # file /rudesktop_web/pages/main_page.py
 import allure
-
 from locators import MenuLocators, HeaderLocators, MainLocators
 from pages.base_page import BasePage
-from selene.api import be, have, s
 from config import *
 
-class MainPage(BasePage):
 
+class MainPage(BasePage):
 
     @allure.step("Открыть пункт меню [Устройства]")
     def open_devices(self):

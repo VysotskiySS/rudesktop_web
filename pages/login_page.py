@@ -1,15 +1,10 @@
 import time
-
 import allure
 from selene import browser
-
 from locators import LoginLocators, MainLocators
 from pages.base_page import BasePage
 from selene.api import be, have, s
 from config import *
-import re
-from selenium import webdriver
-
 from pages.main_page import MainPage
 
 
@@ -17,7 +12,7 @@ class LoginPage(BasePage):
     main = MainPage()
 
     @allure.step("Авторизоваться")
-    def check_login(self, login=valid_login_superuser, password=valid_pass):
+    def check_login(self, login=valid_login_superuser, password=valid_pass, method='local'):
         self.wait_element(LoginLocators.LOGO)
         text_msg = self.get_element_text(LoginLocators.LOGIN_MSG)
         assert text_msg == 'Платформа удаленного администрирования'
@@ -25,19 +20,27 @@ class LoginPage(BasePage):
         assert text_btn == 'Войти'
         self.assert_placeholder(LoginLocators.LOGIN_FIELD, 'Логин')
         self.assert_placeholder(LoginLocators.PASSWORD_FIELD, 'Пароль')
-        self.login()
-        current_login = self.get_element_text(LoginLocators.LOGIN_ICON).replace(" ", "")
-        assert current_login == login, f'Ожидалось {login} но получено {current_login}'
+        self.login(login=login, password=password, method=method)
+        current_login = self.get_element_text(LoginLocators.LOGIN_ICON).lstrip()
+        if method == 'local':
+            assert current_login == login, f'Ожидалось {login} но получено {current_login}'
+        else:
+            user_name = 'Иванов Виктор Игоревич'
+            assert current_login == user_name, f'Ожидалось {user_name} но получено {current_login}'
 
     @allure.step("Авторизоваться")
-    def login(self, login=valid_login_superuser, password=valid_pass):
+    def login(self, login=valid_login_superuser, password=valid_pass, method='local'):
+        if method == 'domain':
+            self.click(LoginLocators.METHOD_AUTH)
+            self.click(LoginLocators.DOMAIN_SELECTOR)
+            self.click(LoginLocators.METHOD_AUTH)
         self.set_text(LoginLocators.LOGIN_FIELD, login)
         self.set_text(LoginLocators.PASSWORD_FIELD, password)
         self.click(LoginLocators.SUBMIT_BTN, 'кнопка [Войти]')
 
     @allure.step("Проверка сообщения при вводе невалидных данных на странице авторизации")
     def invalid_login_msg(self):
-        current_text = self.get_element_text(MainLocators.DANGER_MSG)
+        current_text = self.get_element_text(s('//div[@class="callout callout-danger"]/p'))
         reference_text = 'Введенные учетные данные недействительны. Убедитесь, что вы правильно ввели имя пользователя и пароль, и повторите попытку.'
         assert current_text == reference_text, f'Ожидалось сообщение {reference_text}, но получено {current_text}'
 
