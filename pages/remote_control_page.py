@@ -45,9 +45,9 @@ class RemoteControlPage(BasePage):
 
     @allure.step("Открыть Теги")
     def open_tags(self):
-        self.click(MenuLocators.REMOTE_ACCESS)
+        self.click(MenuLocators.REMOTE_ACCESS, 'пункт меню [Удаленный доступ]')
         self.wait_element(MenuLocators.TAGS)
-        self.click(MenuLocators.TAGS)
+        self.click(MenuLocators.TAGS, 'пункт меню [Теги]')
         self.wait_element(HeaderLocators.ACTIVE_BREAD_CRUMB)
         self.assert_active_bread_crumbs('Теги')
 

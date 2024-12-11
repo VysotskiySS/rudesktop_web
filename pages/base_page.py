@@ -193,20 +193,19 @@ class BasePage:
 
         return count
 
-    @staticmethod
-    def get_screenshot():
+    # @staticmethod
+    def get_screenshot(self):
         allure.attach(
             name="Скриншот",
             body=browser.driver.get_screenshot_as_png(),
             attachment_type=allure.attachment_type.PNG,
         )
-
     # @staticmethod
     # def get_screenshot():
-    #     # screen = "screen.png"
-    #     # browser.driver.get_screenshot_as_png(screen)
-    #     # allure.attach.file(f'./{screen}', attachment_type=allure.attachment_type.PNG)
-    #     pass
+    #     screen = "screen.png"
+    #     browser.driver.get_screenshot_as_png(screen)
+    #     allure.attach.file(f'./{screen}', attachment_type=allure.attachment_type.PNG)
+        # pass
 
     @staticmethod
     def get_title():
@@ -239,26 +238,31 @@ class BasePage:
     def reload_page(self):
         browser.driver.refresh()
 
+    # @allure.step("Распарсить многострочную строку")
     def parse_multiline_string(self, string):
         string = string.split('\n')
         return string
 
+    @allure.step("Проверить активный элемент в хлебных крошках на соответствие тексту")
     def assert_active_bread_crumbs(self, reference_text):
         current_text = self.get_element_text(HeaderLocators.ACTIVE_BREAD_CRUMB)
         assert current_text == reference_text, f'Текст активной страницы в хлебных крошках должен быть {reference_text} но получен {current_text}'
 
+    @allure.step("Генерируем случайное имя")
     def generate_random_name(self, base_name='username', length=5):
         # Генерируем случайную строку из букв заданной длины
         random_part = ''.join(random.choices(string.ascii_letters, k=length))
         # Возвращаем полное имя, состоящее из постоянной и случайной части
         return f"{base_name}_{random_part}"
 
+    @allure.step("Генерируем случайный адрес почты")
     def generate_random_email(self, base_email='rude', length=8):
         # Генерируем случайную строку из букв заданной длины
         random_part = ''.join(random.choices(string.ascii_lowercase, k=length))
         # Возвращаем полный адрес, состоящее из постоянной и случайной части
         return f"{base_email}-{random_part}@mailforspam.com"
 
+    @allure.step("Генерируем случайное ФИО")
     def generate_random_full_name(self):
         fake = Faker()
         first_name = fake.first_name()
