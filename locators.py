@@ -176,7 +176,7 @@ class UEMLocators:
 
     NAME_FIELD = s('//input[@name="name"]')
     SAVE_BTN = s('//button[contains(text(), "Сохранить") and contains(@class, "btn-primary")]')
-
+    ADD_TASK_BTN = s('//a[@href="/automation/job/add/"]')
 
 
 class OrgLocators:

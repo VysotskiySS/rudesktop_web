@@ -35,3 +35,14 @@ class TestPolicyPage:
         uem.add_inventory_policy()
         main = MainPage()
         main.delete_element_in_list()
+
+    @pytest.mark.uem
+    @pytest.mark.smoke
+    @allure.title('Добавить Задачу')
+    @allure.testcase("")
+    def test_add_task(self):
+        login = LoginPage()
+        login.login()
+        uem = UEMPage()
+        uem.open_tasks()
+        uem.add_task()
