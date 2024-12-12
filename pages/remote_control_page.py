@@ -18,19 +18,19 @@ class RemoteControlPage(BasePage):
 
     @allure.step("Открыть адресную книгу")
     def open_address_book(self):
-        self.click(MenuLocators.REMOTE_ACCESS)
+        self.click(MenuLocators.REMOTE_ACCESS, 'пункт меню [Удаленный доступ]')
         self.wait_element(MenuLocators.ADDRESSES)
-        self.click(MenuLocators.ADDRESSES)
+        self.click(MenuLocators.ADDRESSES, 'пункт меню [Адреса]')
         self.wait_element(HeaderLocators.ACTIVE_BREAD_CRUMB)
         self.assert_active_bread_crumbs('Адреса')
 
     @allure.step("Добавить адрес в адресную книгу")
     def add_address(self):
-        self.click(RemoteAccessLocators.ADD_ADDRESS)
+        self.click(RemoteAccessLocators.ADD_ADDRESS, 'кнопка [Добавить Адрес]')
         self.assert_active_bread_crumbs('Добавить Адрес')
         self.set_text(RemoteAccessLocators.ID_FIELD, '000111333')
         self.set_text(RemoteAccessLocators.NAME_FIELD, 'Alias')
-        self.click(RemoteAccessLocators.SAVE_BTN)
+        self.click(RemoteAccessLocators.SAVE_BTN, 'кнопка [Сохранить]')
         self.wait_element(MainLocators.SUCCESS_ALERT)
 
     @allure.step("Открыть Теги")

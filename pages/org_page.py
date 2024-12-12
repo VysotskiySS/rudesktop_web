@@ -19,5 +19,5 @@ class OrgPage(BasePage):
         self.set_text(OrgLocators.ADDRESS_DC_FIELD, '192.168.10.68')
         self.set_text(OrgLocators.USER_FIELD, 'CN=Администратор,CN=Users,DC=win2012,DC=local')
         self.set_text(OrgLocators.PASSWORD_FIELD, password)
-        self.click(OrgLocators.SAVE_BTN)
+        self.click(OrgLocators.SAVE_BTN, 'кнопка [Сохранить]')
         self.wait_element(MainLocators.SUCCESS_ALERT)

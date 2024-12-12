@@ -41,7 +41,7 @@ class TestLoginPage:
         page = LoginPage()
         page.reset_pass()
 
-    @pytest.mark.main
+    @pytest.mark.login
     @pytest.mark.smoke
     @allure.title('Создать учетную запись')
     @allure.testcase("https://dev.corp.rudesktop.ru/-/testy/projects/2/suites/8?test_case=225")

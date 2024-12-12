@@ -11,7 +11,7 @@ from pages.main_page import MainPage
 @allure.feature("Удаленный доступ")
 class TestRemoteControlPage:
 
-    @pytest.mark.main
+    @pytest.mark.rc
     @pytest.mark.smoke
     @allure.title('Фильтр - Поиск устройства')
     def test_find_device(self):
@@ -22,7 +22,7 @@ class TestRemoteControlPage:
         rc = RemoteControlPage()
         # rc.filter_search()
 
-    @pytest.mark.main
+    @pytest.mark.rc
     @pytest.mark.smoke
     @allure.title('Добавить адрес')
     @allure.testcase("https://dev.corp.rudesktop.ru/-/testy/projects/2/suites/8?test_case=226")
@@ -35,7 +35,7 @@ class TestRemoteControlPage:
         main.clear_all_in_list()
         rc.add_address()
 
-    @pytest.mark.main
+    @pytest.mark.rc
     @pytest.mark.smoke
     @allure.title('Удалить адрес')
     @allure.testcase("https://dev.corp.rudesktop.ru/-/testy/projects/2/suites/8?test_case=228")
@@ -49,7 +49,7 @@ class TestRemoteControlPage:
         rc.add_address()
         main.delete_element_in_list()
 
-    @pytest.mark.main
+    @pytest.mark.rc
     @pytest.mark.smoke
     @allure.title('Добавить тег')
     @allure.testcase("https://dev.corp.rudesktop.ru/-/testy/projects/2/suites/8?test_case=227")
@@ -62,7 +62,7 @@ class TestRemoteControlPage:
         main.clear_all_in_list()
         rc.add_tag()
 
-    @pytest.mark.main
+    @pytest.mark.rc
     @pytest.mark.smoke
     @allure.title('Удалить тег')
     @allure.testcase("https://dev.corp.rudesktop.ru/-/testy/projects/2/suites/8?test_case=229")
@@ -76,7 +76,7 @@ class TestRemoteControlPage:
         rc.add_tag()
         main.delete_element_in_list()
 
-    @pytest.mark.main
+    @pytest.mark.rc
     @pytest.mark.smoke
     @allure.title('Удалить все устройства на странице')
     def test_delete_devices(self):

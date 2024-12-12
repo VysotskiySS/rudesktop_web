@@ -9,7 +9,7 @@ from pages.menu_page import MenuPage
 @allure.feature("Меню")
 class TestMenuPage:
 
-    @pytest.mark.main
+    @pytest.mark.menu
     @pytest.mark.smoke
     @allure.title('Проверка пунктов меню первого уровня')
     @allure.testcase("https://dev.corp.rudesktop.ru/-/testy/projects/2/suites/8?test_case=212")
@@ -19,7 +19,7 @@ class TestMenuPage:
         menu = MenuPage()
         menu.check_left_menu_l1()
 
-    @pytest.mark.main
+    @pytest.mark.menu
     @pytest.mark.smoke
     @allure.title('Проверка пунктов меню второго уровня')
     @allure.testcase("https://dev.corp.rudesktop.ru/-/testy/projects/2/suites/8?test_case=212")
@@ -29,7 +29,7 @@ class TestMenuPage:
         menu = MenuPage()
         menu.check_left_menu_l2()
 
-    @pytest.mark.main
+    @pytest.mark.menu
     @pytest.mark.smoke
     @allure.title('Проверка открытия разделов меню')
     @allure.testcase("https://dev.corp.rudesktop.ru/-/testy/projects/2/suites/8?test_case=212")

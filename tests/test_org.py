@@ -11,7 +11,7 @@ from pages.org_page import OrgPage
 @allure.feature("Организация")
 class TestOrgPage:
 
-    @pytest.mark.main
+    @pytest.mark.org
     @pytest.mark.smoke
     @allure.title('Добавить домен')
     @allure.testcase("https://dev.corp.rudesktop.ru/-/testy/projects/2/suites/8?test_case=230")
@@ -24,7 +24,7 @@ class TestOrgPage:
         main.clear_all_in_list()
         org.add_domain()
 
-    @pytest.mark.main
+    @pytest.mark.org
     @pytest.mark.smoke
     @allure.title('Удалить домен')
     @allure.testcase("https://dev.corp.rudesktop.ru/-/testy/projects/2/suites/8?test_case=231")

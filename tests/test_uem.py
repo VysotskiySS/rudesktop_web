@@ -12,7 +12,7 @@ from pages.uem_page import UEMPage
 @allure.feature("Управление (UEM)")
 class TestPolicyPage:
 
-    @pytest.mark.main
+    @pytest.mark.uem
     @pytest.mark.smoke
     @allure.title('Добавить политику')
     @allure.testcase("https://dev.corp.rudesktop.ru/-/testy/projects/2/suites/8?test_case=234")
@@ -23,7 +23,7 @@ class TestPolicyPage:
         uem.open_policy()
         uem.add_inventory_policy()
 
-    @pytest.mark.main
+    @pytest.mark.uem
     @pytest.mark.smoke
     @allure.title('Удалить политику')
     @allure.testcase("https://dev.corp.rudesktop.ru/-/testy/projects/2/suites/8?test_case=235")
