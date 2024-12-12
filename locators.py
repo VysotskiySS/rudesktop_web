@@ -96,6 +96,15 @@ class MainLocators:
     MORE_OPTION_BTN = s('//div[@class="dropdown table-action"]')
     OPTION_DELETE = s('//a[contains(@href, "/delete/")]')
 
+    MAIN_CHECK_BOX = s('//input[@id="action-toggle"]')
+    SELECTOR = s('//select[@name="action"]')
+    DELETE_SELECTED = s('//option[@value="delete_selected"]')
+    EXECUTE_BTN = s('//button[contains(text(), "Выполнить")]')
+    SUBMIT_BTN = s('//input[@type="submit"]')
+    ACTION_COUNTER = s('//span[@class="action-counter"]')
+
+    COUNT_ELEMENTS = s('//table[@class="table table-striped"]')
+
 class LoginLocators:
     ENTER_AGAIN_BTN = s('//a[@href="/"]')
     LOGIN_MSG = s('//p[@class="login-box-msg"]')
@@ -134,15 +143,11 @@ class RemoteAccessLocators:
     NAME_FIELD = s('//input[@name="alias"]')
     ADD_TAG = s('//a[@href="/addressbook/tag/add/"]')
     NAME_TAG_FIELD = s('//input[@name="name"]')
-    MAIN_CHECK_BOX = s('//input[@id="action-toggle"]')
-    SELECTOR = s('//select[@name="action"]')
-    DELETE_SELECTED = s('//option[@value="delete_selected"]')
-    EXECUTE_BTN = s('//button[contains(text(), "Выполнить")]')
-    SUBMIT_BTN = s('//input[@type="submit"]')
+
     FIND_BTN = s('//button[contains(text(),"Найти")]')
     FILTER_SEARCH_FIELD = s('//input[@placeholder="Введите значение"]')
     CHECK_BOX_DEVICE_IN_LIST = s('//input[@class="action-select"]')
-    ACTION_COUNTER = s('//span[@class="action-counter"]')
+
     IMPORT_DEVICES_FROM_FILE_BTN = s('//i[@class="fas fa-file-import"]')
     SELECT_ACTIONS = s('//select[@class="form-control"]')
     # '//options[@value="delete_selected"]'
@@ -151,3 +156,37 @@ class RemoteAccessLocators:
     # '//options[@value="change_connection"]'
     # '//options[@value="export"]'
     # '//td[@class="action-checkbox"]'
+
+
+class UEMLocators:
+    ADD_POLICY_BTN = s('//a[@href="/automation/policy/add/"]')
+    SEARCH_FIELD = s('//input[@placeholder="Поиск..."]')
+    TEMPLATE_FOR_NEW_POLICY = s('//a[@href="/automation/policy/create/?template=default"]')
+    # Категории политик
+    USERS_POLICY = s('//div[contains(text(), "Пользовательские")]')
+    MAINTENANCE_AND_ADMINISTRATION_POLICY = s('//div[contains(text(), "Обслуживание и администрирование")]')
+    INVENTORY = s('//a[@href="/automation/policy/create/?template=setup"]')
+
+    SERVER_MAINTENANCE_POLICY = s('//div[contains(text(), "Обслуживание сервера RuDesktop")]')
+    SECURITY_AND_ACCESS_MANAGEMENT_POLICY = s('//div[contains(text(), "Управление безопасностью и доступом")]')
+    DIRECTORY_AND_FILE_MANAGEMENT_POLICY = s('//div[contains(text(), "Управление директориями и файлами")]')
+    USER_AND_DEVICE_MANAGEMENT_POLICY = s('//div[contains(text(), "Управление пользователями и устройствами")]')
+    SOFTWARE_INSTALLATION_AND_UPDATE_POLICY = s('//div[contains(text(), "Установка и обновление ПО")]')
+    POLICY_GROUPS_LIST = [MAINTENANCE_AND_ADMINISTRATION_POLICY, SERVER_MAINTENANCE_POLICY, SECURITY_AND_ACCESS_MANAGEMENT_POLICY, DIRECTORY_AND_FILE_MANAGEMENT_POLICY, USER_AND_DEVICE_MANAGEMENT_POLICY, SOFTWARE_INSTALLATION_AND_UPDATE_POLICY]
+
+    NAME_FIELD = s('//input[@name="name"]')
+    SAVE_BTN = s('//button[contains(text(), "Сохранить") and contains(@class, "btn-primary")]')
+
+
+
+class OrgLocators:
+    ENABLE_CHECKBOX = s('//input[@name="enable"]')
+    TYPE_AD_SELECTOR = s('//span[@title="Active Directory"]')
+    ADD_DOMAIN_BTN = s('//a[@href="/ad/domain/add/"]')
+    DOMAIN_FIELD = s('//input[@name="domain"]')
+    ADDRESS_DC_FIELD = s('//input[@name="host"]')
+    USE_TLS_CHECKBOX = s('//input[@name="use_tls"]')
+    USER_FIELD = s('//textarea[@name="user"]')
+    PASSWORD_FIELD = s('//input[@name="password"]')
+    PATH_FIELD = s('//textarea[@name="path"]')
+    SAVE_BTN = s('//input[@value="Сохранить"]')

@@ -4,8 +4,18 @@ from locators import MenuLocators, HeaderLocators, MainLocators
 from pages.base_page import BasePage
 from config import *
 
+# from pages.login_page import LoginPage
+# from pages.menu_page import MenuPage
+# from pages.org_page import OrgPage
+# from pages.remote_control_page import RemoteControlPage
+# from pages.uem_page import UEMPage
 
 class MainPage(BasePage):
+    # login = LoginPage()
+    # menu = MenuPage()
+    # org = OrgPage()
+    # rc = RemoteControlPage()
+    # uem = UEMPage()
 
     @allure.step("Открыть пункт меню [Устройства]")
     def open_devices(self):
@@ -96,7 +106,34 @@ class MainPage(BasePage):
         success_msg_text = self.get_element_text(MainLocators.SUCCESS_MSG)
         assert success_msg_text == 'Ваш пароль был изменен.'
 
+    @allure.step("Удалить все элементы из списка на странице")
+    def clear_all_in_list(self):
+        if self.count_element_in_list() > 0:
+            self.click(MainLocators.MAIN_CHECK_BOX, 'чекбокс группы элементов')
+            self.click(MainLocators.SELECTOR, 'селектор [Действия с выбранными объектами]')
+            self.click(MainLocators.DELETE_SELECTED, 'опция селектора [Удалить выбранные]')
+            self.click(MainLocators.EXECUTE_BTN, 'кнопка [Выполнить]')
+            self.click_btn_yes_i_am_sure()
+            self.wait_element(MainLocators.SUCCESS_ALERT)
 
+    @allure.step("Удалить элемент из списка")
+    def delete_element_in_list(self):
+        self.click(MainLocators.MORE_OPTION_BTN, 'кнопка [...]')
+        self.click(MainLocators.OPTION_DELETE, 'пункт [Удалить] в списке опций')
+        count_string = self.get_element_text(MainLocators.COUNT_ELEMENTS)
+        count = self.get_int_from_str(count_string)
+        assert count == 1, f'На удаление отмечено {count} элементов, ожидался - 1'
+        self.click_btn_yes_i_am_sure()
+        self.wait_element(MainLocators.SUCCESS_ALERT)
 
+    def click_btn_yes_i_am_sure(self):
+        self.click(MainLocators.SUBMIT_BTN, 'кнопка [Да, я уверен]')
 
-
+    @allure.step("Получить количество записей в списке")
+    def count_element_in_list(self):
+        try:
+            count = int(self.get_attribute(MainLocators.ACTION_COUNTER, "data-actions-icnt"))
+            return count
+        except:
+            count = 0
+            return count

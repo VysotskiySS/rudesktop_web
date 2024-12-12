@@ -31,7 +31,8 @@ class TestRemoteControlPage:
         login.login()
         rc = RemoteControlPage()
         rc.open_address_book()
-        rc.clear_all_in_list()
+        main = MainPage()
+        main.clear_all_in_list()
         rc.add_address()
 
     @pytest.mark.main
@@ -43,9 +44,10 @@ class TestRemoteControlPage:
         login.login()
         rc = RemoteControlPage()
         rc.open_address_book()
-        rc.clear_all_in_list()
+        main = MainPage()
+        main.clear_all_in_list()
         rc.add_address()
-        rc.delete_element_in_list()
+        main.delete_element_in_list()
 
     @pytest.mark.main
     @pytest.mark.smoke
@@ -56,7 +58,8 @@ class TestRemoteControlPage:
         login.login()
         rc = RemoteControlPage()
         rc.open_tags()
-        rc.clear_all_in_list()
+        main = MainPage()
+        main.clear_all_in_list()
         rc.add_tag()
 
     @pytest.mark.main
@@ -68,9 +71,10 @@ class TestRemoteControlPage:
         login.login()
         rc = RemoteControlPage()
         rc.open_tags()
-        rc.clear_all_in_list()
+        main = MainPage()
+        main.clear_all_in_list()
         rc.add_tag()
-        rc.delete_element_in_list()
+        main.delete_element_in_list()
 
     @pytest.mark.main
     @pytest.mark.smoke
@@ -81,4 +85,5 @@ class TestRemoteControlPage:
         main = MainPage()
         main.open_devices()
         rc = RemoteControlPage()
-        rc.clear_all_in_list()
+        main = MainPage()
+        main.clear_all_in_list()

@@ -5,6 +5,8 @@ import random
 import string
 import re
 import time
+from itertools import count
+
 from faker import Faker
 import allure
 import pytest
@@ -17,6 +19,7 @@ from locators import *
 
 
 class BasePage:
+
 
     @allure.step("Переход на страницу '{url}'")
     def open_url(self, url):
@@ -104,6 +107,20 @@ class BasePage:
     def get_element(self, locator):
         driver = browser.driver
         return driver.find_element(By.XPATH, locator)
+
+    def get_element_amount(self, locator):
+        elements = browser.all(locator)
+        return len(elements)
+
+    @staticmethod
+    def get_random_element_from_list(elements_list):
+        return elements_list[random.randrange(0, len(elements_list))]
+
+    def get_random_element(self, locator):
+        count = self.get_element_amount(locator)
+        counter = random.randrange(0, count - 1)
+        elements_list = self.get_elements(locator)
+        return elements_list[counter]
 
     def get_elements(self, locator):
         driver = browser.driver

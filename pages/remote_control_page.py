@@ -13,8 +13,8 @@ class RemoteControlPage(BasePage):
         self.set_text(RemoteAccessLocators.FILTER_SEARCH_FIELD, '000111333')
         self.click(RemoteAccessLocators.FIND_BTN, 'кнопка [Найти]')
         self.search_same_elements(RemoteAccessLocators.CHECK_BOX_DEVICE_IN_LIST)
-        self.get_attribute(RemoteAccessLocators.ACTION_COUNTER, "data-actions-icnt")
-        count_device_in_list_after_search = self.get_attribute(RemoteAccessLocators.ACTION_COUNTER, "data-actions-icnt")
+        self.get_attribute(MainLocators.ACTION_COUNTER, "data-actions-icnt")
+        count_device_in_list_after_search = self.get_attribute(MainLocators.ACTION_COUNTER, "data-actions-icnt")
 
     @allure.step("Открыть адресную книгу")
     def open_address_book(self):
@@ -33,16 +33,6 @@ class RemoteControlPage(BasePage):
         self.click(RemoteAccessLocators.SAVE_BTN)
         self.wait_element(MainLocators.SUCCESS_ALERT)
 
-    @allure.step("Удалить адрес из адресной книги")
-    def delete_element_in_list(self):
-        self.click(MainLocators.MORE_OPTION_BTN, 'кнопка [...]')
-        self.click(MainLocators.OPTION_DELETE, 'пункт [Удалить] в списке опций')
-        count_string = self.get_element_text(s('//table[@class="table table-striped"]'))
-        count = self.get_int_from_str(count_string)
-        assert count == 1, f'На удаление отмечено {count} элементов, ожидался - 1'
-        self.click_btn_yes_i_am_sure()
-        self.wait_element(MainLocators.SUCCESS_ALERT)
-
     @allure.step("Открыть Теги")
     def open_tags(self):
         self.click(MenuLocators.REMOTE_ACCESS, 'пункт меню [Удаленный доступ]')
@@ -59,27 +49,10 @@ class RemoteControlPage(BasePage):
         self.click(RemoteAccessLocators.SAVE_BTN, 'кнопка [Сохранить]')
         self.wait_element(MainLocators.SUCCESS_ALERT)
 
-    @allure.step("Получить количество записей в списке")
-    def count_element_in_list(self):
-        try:
-            count = int(self.get_attribute(RemoteAccessLocators.ACTION_COUNTER, "data-actions-icnt"))
-            return count
-        except:
-            count = 0
-            return count
 
-    def click_btn_yes_i_am_sure(self):
-        self.click(RemoteAccessLocators.SUBMIT_BTN, 'кнопка [Да, я уверен]')
 
-    @allure.step("Удалить все элементы из списка на странице")
-    def clear_all_in_list(self):
-        if self.count_element_in_list() > 0:
-            self.click(RemoteAccessLocators.MAIN_CHECK_BOX, 'чекбокс группы элементов')
-            self.click(RemoteAccessLocators.SELECTOR, 'селектор [Действия с выбранными объектами]')
-            self.click(RemoteAccessLocators.DELETE_SELECTED, 'опция селектора [Удалить выбранные устройства]')
-            self.click(RemoteAccessLocators.EXECUTE_BTN, 'кнопка [Выполнить]')
-            self.click_btn_yes_i_am_sure()
-            self.wait_element(MainLocators.SUCCESS_ALERT)
+
+
 
 
 
