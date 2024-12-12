@@ -27,7 +27,7 @@ class TestOrgPage:
     @pytest.mark.main
     @pytest.mark.smoke
     @allure.title('Удалить домен')
-    @allure.testcase("")
+    @allure.testcase("https://dev.corp.rudesktop.ru/-/testy/projects/2/suites/8?test_case=231")
     def test_delete_domain(self):
         login = LoginPage()
         login.login()
