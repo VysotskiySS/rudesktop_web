@@ -39,10 +39,32 @@ class TestPolicyPage:
     @pytest.mark.uem
     @pytest.mark.smoke
     @allure.title('Добавить Задачу')
-    @allure.testcase("")
+    @allure.testcase("https://dev.corp.rudesktop.ru/-/testy/projects/2/suites/8?test_case=236")
     def test_add_task(self):
         login = LoginPage()
         login.login()
         uem = UEMPage()
+        uem.open_policy()
+        main = MainPage()
+        if main.count_element_in_list() == 0:
+            uem.add_inventory_policy()
         uem.open_tasks()
         uem.add_task()
+
+    @pytest.mark.uem
+    @pytest.mark.smoke
+    @allure.title('Удалить Задачу')
+    @allure.testcase("https://dev.corp.rudesktop.ru/-/testy/projects/2/suites/8?test_case=237")
+    def test_delete_task(self):
+        login = LoginPage()
+        login.login()
+        uem = UEMPage()
+        uem.open_tasks()
+        main = MainPage()
+        if main.count_element_in_list() == 0:
+            uem.open_policy(path='cut')
+            if main.count_element_in_list() == 0:
+                uem.add_inventory_policy()
+            uem.open_tasks(path='cut')
+            uem.add_task()
+        main.delete_element_in_list()

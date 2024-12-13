@@ -118,6 +118,7 @@ class MainPage(BasePage):
 
     @allure.step("Удалить элемент из списка")
     def delete_element_in_list(self):
+        domain_count = self.count_element_in_list()
         self.click(MainLocators.MORE_OPTION_BTN, 'кнопка [...]')
         self.click(MainLocators.OPTION_DELETE, 'пункт [Удалить] в списке опций')
         count_string = self.get_element_text(MainLocators.COUNT_ELEMENTS)
@@ -125,6 +126,9 @@ class MainPage(BasePage):
         assert count == 1, f'На удаление отмечено {count} элементов, ожидался - 1'
         self.click_btn_yes_i_am_sure()
         self.wait_element(MainLocators.SUCCESS_ALERT)
+        current_domain_count = self.count_element_in_list()
+        count = domain_count - current_domain_count
+        assert  count == 1, f'Ожидалось доменов в списке {domain_count-1}, но получено {current_domain_count}'
 
     def click_btn_yes_i_am_sure(self):
         self.click(MainLocators.SUBMIT_BTN, 'кнопка [Да, я уверен]')

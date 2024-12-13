@@ -34,8 +34,8 @@ class TestOrgPage:
         org = OrgPage()
         org.open_domains()
         main = MainPage()
-        main.clear_all_in_list()
-        org.add_domain()
+        if main.count_element_in_list() == 0:
+            org.add_domain()
         main.delete_element_in_list()
 
 

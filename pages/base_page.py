@@ -117,10 +117,24 @@ class BasePage:
         return elements_list[random.randrange(0, len(elements_list))]
 
     def get_random_element(self, locator):
+        # count = self.get_element_amount(locator)
+        # counter = random.randrange(0, count - 1)
+        # elements_list = self.elements(locator)
+        # return elements_list[counter]
+
+        elements_list = self.elements(locator)
         count = self.get_element_amount(locator)
         counter = random.randrange(0, count - 1)
-        elements_list = self.get_elements(locator)
-        return elements_list[counter]
+        random_element = elements_list[counter]
+        return random_element
+
+        # self.click(list[counter])
+
+    def click_random_element(self, locator):
+        list = self.elements(locator)
+        count = self.get_element_amount(locator)
+        counter = random.randrange(0, count - 1)
+        self.click(list[counter])
 
     def get_elements(self, locator):
         driver = browser.driver
